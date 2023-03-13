@@ -1,17 +1,28 @@
 import React from 'react'
-import { Route, Routes } from 'react-router-dom'
-import MenuRegistros from '../../components/Menu-Registros'
+import { Link, Outlet } from 'react-router-dom'
 
 const Registros = () => {
   return (
     <div className='container'>
+      <div className='navbar navbar-expand-lg bg-primary-subtle my-3 rounded'>
+        <div className='container-fluid justify-content-center'>
+          <Link 
+            className="nav-link active m-2 " 
+            aria-current="page"
+            to="/registros/mensagens">
+            Mensagens
+          </Link>
+          <Link 
+            className="nav-link active m-2" 
+            aria-current="page"
+            to="/registros/clientes">
+            Clientes
+          </Link>
+        </div>
+      </div>
+      <Outlet />
 
-      <MenuRegistros/>
-
-      <Routes>
-        <Route to='/registros/mensagens' element={<>div das mensagens</>}/>
-        <Route to='/registros/clientes'element={<>div das clientes</>}/>
-      </Routes>
+      
     </div>
   )
 }

@@ -3,19 +3,21 @@ import { Link } from 'react-router-dom'
 
 const MenuRegistros = () => {
   return (
-    <div className='container'>
-      <Link 
-        className="nav-link active" 
-        aria-current="page"
-        to="/registros/mensagens">
+    <div className='navbar navbar-expand-lg bg-primary-subtle m-3 rounded'>
+      <div className='container-fluid justify-content-center'>
+        <Link 
+          className="nav-link active m-2 " 
+          aria-current="page"
+          to="/registros/mensagens">
             Mensagens
-      </Link>
-      <Link 
-        className="nav-link active" 
-        aria-current="page"
-        to="/registros/clientes">
+        </Link>
+        <Link 
+          className="nav-link active m-2" 
+          aria-current="page"
+          to="/registros/clientes">
             Clientes
-      </Link>
+        </Link>
+      </div>
     </div>
   )
 }
