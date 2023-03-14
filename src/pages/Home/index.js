@@ -3,25 +3,24 @@ import React from 'react'
 const Home = () => {
   return (
     <>
-      <div className='container mt-3 bg-primary flex-nowrap'>
+      <div className='container mt-5 bg-info-subtle flex-nowrap'>
         <div className="input-group">
           <input 
-            className="form-control m-2" 
+            className="form-control m-2 rounded" 
             type="text"
-            aria-label="First name"
             placeholder='Nome da Cliente'
           />
-          <button className='btn bg-secondary '> Pesquisar </button>
+          <button className='btn btn-secondary rounded m-2'> Pesquisar </button>
 
           <input 
-            className="form-control m-2" 
+            className="form-control m-2 rounded" 
             type="number"
             aria-label="First name"
             placeholder='telefone'
           />
 
           <select 
-            className="form-select m-2" 
+            className="form-select m-2 rounded" 
             id="inputGroupSelect01">
             <option selected>Serviço Prestado</option>
             <option value="1">Mechas</option>
@@ -33,21 +32,19 @@ const Home = () => {
             <input 
               className="form-control m-2" 
               type="number"
-              aria-label="First name"
               placeholder='Feedback'
             />
           </div>
 
           <div className="col-sm-1 me-3">
             <input 
-              className="form-control m-2 col-md-1" 
+              className="form-control m-2 " 
               type="number"
-              aria-label="First name"
               placeholder='convite '
             />
           </div>
 
-          <button className='btn bg-secondary'> Enviar </button>
+          <button className='btn btn-secondary rounded m-2'> Enviar </button>
         </div>
       </div>
 
