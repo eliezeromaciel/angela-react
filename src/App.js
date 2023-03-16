@@ -12,6 +12,7 @@ import Registros from './pages/Registros'
 import Home from './pages/Home'
 import Mensagens from './pages/Mensagens'
 import Clientes from './pages/Clientes'
+import FormClientes from './pages/FormClientes'
 
 function App() {
   return (
@@ -25,6 +26,8 @@ function App() {
           <Route path='/registros'element={<Registros/>}> 
             <Route path='/registros/mensagens' element={<Mensagens/> } />
             <Route path='/registros/clientes' element={<Clientes/> } />
+            <Route path='/registros/clientes/new' element={<FormClientes/> } />
+
           </Route>
         </Route>
       </Routes>

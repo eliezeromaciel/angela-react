@@ -16,4 +16,12 @@ const getClientes = () => {
   return resp
 }
 
+export const postClientes = async ({telefone, nome, whatsapp, instagram, dNascim})=> {
+  // const resp = await api.post('/registros/clientes/new')
+  const resp = [telefone, nome, whatsapp, instagram, dNascim ]
+  console.log(` dados enviados por POST : ${resp}`)
+  return resp
+
+}
+
 export default getClientes

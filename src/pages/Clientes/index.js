@@ -1,5 +1,5 @@
 import React, { useEffect, useState }from 'react'
-import getClientes from './clientes'
+import getClientes from '../../services/clientes'
 import { Link } from 'react-router-dom'
 
 const Clientes = () => {
