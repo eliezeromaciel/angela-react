@@ -28,14 +28,16 @@
         "ignoreTemplateLiterals": true
       }
     ],
-    "no-console": [
-      "warn",
-      {
-        "allow": [
-          "error"
-        ]
-      }
-    ],
+
+    // "no-console": [
+    //   "warn",
+    //   {
+    //     "allow": [
+    //       "error"
+    //     ]
+    //   }
+    // ],
+
     "react/jsx-max-props-per-line": [
       "error",
       {

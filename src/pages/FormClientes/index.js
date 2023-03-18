@@ -1,5 +1,5 @@
 import React, { useState,} from 'react'
-import { Navigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import {postClientes} from '../../services/clientes'
 
 
@@ -11,6 +11,8 @@ const FormClientes = () =>{
   const [instagram, setInstagram] = useState ('')
   const [dNascim, setDNascim] = useState ('')
   const [mensagem, setMensagem] = useState('')
+
+  const navigate = useNavigate() 
 
   const validaForm = () => {
     
@@ -34,8 +36,8 @@ const FormClientes = () =>{
       setMensagem ('Preencha o data nascimento')
       return false
     }
-
-    postClientes({nome :nome, telefone:telefone, whatsapp: whatsapp, instagram: instagram, dNascim: dNascim})
+    // NÃO PRECISO ESCREVER DESSA FORMA. {nome :nome, telefone:telefone, whatsapp: whatsapp, instagram: instagram, dNascim: dNascim}
+    postClientes({ telefone, nome, whatsapp, instagram, dNascim})
     
     setNome('')
     setTelefone('')
@@ -43,6 +45,8 @@ const FormClientes = () =>{
     setInstagram('')
     setDNascim('')
     setMensagem('')
+    
+    navigate ('/registros/clientes')
 
   }
 

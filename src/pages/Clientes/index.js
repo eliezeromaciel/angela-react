@@ -44,22 +44,44 @@ const Clientes = () => {
       <table className='table table-striped '>
         <thead>
           <tr>
-            <th className='col-4'>Nome</th>
+            <th className='col-3'>Nome</th>
             <th className='col-2 '>telefone</th>
             <th className='col-2'>Whatsapp</th>
             <th className='col-2'>Instagram</th>
             <th className='col-1'>aniversário</th>
+            <th className='col-2'>    </th>
           </tr>
         </thead>
         <tbody className='table-group-divider align-middle'>
           { clientes !== '' && clientes.map ( (cl) => {
             return (
-              <tr key={cl.nome}>
+              <tr key={cl.whats}>
                 <td>{cl.nome}</td>
                 <td>{cl.telefone}</td>
                 <td>{cl.whats}</td>
                 <td>{cl.insta}</td>
                 <td>{cl.dn}</td>
+                <td>
+                  <div className=' grid gap-3'>
+                    <Link 
+                      to={`/registros/clientes/${cl.nome}`}
+                      className='btn btn-outline-warning btn-sm g-col-6  '
+                    >
+                      <i className="bi bi-pencil"></i>
+                         Editar
+                    </Link>
+            
+                    <button 
+                      className='btn btn-outline-danger btn-sm g-col-6'
+                      onClick={() => {
+                        // deletaPeloId(d.id_departamento)   // ENVIANDO UM OBJETO SERIA: deletaPeloId ( { idDepartamento: d.id_departamento })
+                      }}
+                    >
+                      <i className="bi bi-trash"></i>
+                        Excluir
+                    </button>
+                  </div>
+                </td>
               </tr>
             ) 
           })}
