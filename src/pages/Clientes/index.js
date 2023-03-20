@@ -1,6 +1,7 @@
 import React, { useEffect, useState }from 'react'
 import getClientes from '../../services/clientes'
 import { Link } from 'react-router-dom'
+import { deleteCliente } from '../../services/clientes'
 
 const Clientes = () => {
 
@@ -14,6 +15,10 @@ const Clientes = () => {
     } catch (err) {
       console.log(`Erro na API ==> ${err}`)
     }
+  }
+
+  const deletaPeloWhats = async (param) => {
+    deleteCliente (param)
   }
 
   
@@ -74,7 +79,7 @@ const Clientes = () => {
                     <button 
                       className='btn btn-outline-danger btn-sm g-col-6'
                       onClick={() => {
-                        // deletaPeloId(d.id_departamento)   // ENVIANDO UM OBJETO SERIA: deletaPeloId ( { idDepartamento: d.id_departamento })
+                        deletaPeloWhats({whatsapp: cl.whatsapp})   // ENVIANDO UM OBJETO SERIA: deletaPeloId ( { idDepartamento: d.id_departamento })
                       }}
                     >
                       <i className="bi bi-trash"></i>

@@ -1,13 +1,12 @@
 import React, { useEffect, useState} from 'react'
-import {useNavigate, useParams} from 'react-router-dom'   // IMPORTA USEPARAMS, QUE VAI POSSIBLITAR TRABALHAR COM O PARAMETRO QUE CHEGA PELA URL.
-import {getClienteById, postClientes} from '../../services/clientes'
+import {useNavigate, useParams} from 'react-router-dom'   
+import {getClienteById, postClientes, updateCliente} from '../../services/clientes'
 
 
 const FormClientes = () =>{
 
-  const {whats} = useParams()      // PARA CHAMAR O USEPARAMS
+  const {whats} = useParams()    
   const navigate = useNavigate() 
-
 
   const [nome, setNome] = useState ('')
   const [telefone, setTelefone] = useState ('')
@@ -17,8 +16,7 @@ const FormClientes = () =>{
   const [mensagem, setMensagem] = useState('')
 
 
-  const validaForm = () => {
-    
+  const validaForm = async () => {
     if (nome === '') {
       setMensagem ('Preencha o nome')
       return false
@@ -46,47 +44,42 @@ const FormClientes = () =>{
     setInstagram('')
     setDNascim('')
     setMensagem('')
+
+    try {
+      if (whats) {
+        console.log(`o parametro whats é : ${whats}`)
+        updateCliente ({nome, telefone, whatsapp, instagram, dNascim})
+      } else {
+        await postClientes({ telefone, nome, whatsapp, instagram, dNascim}) 
+      }
+    }catch (err) {
+      console.log (err)
+    }
+    navigate ('/registros/clientes')
   }
 
   
-  try {
-    if (whats) {
-      console.log(`o parametro whats é : ${whats}`)
-      getClienteById (whats)
-    } else {
-      // AQUI FUNCAO PARA CADASTRAR NOVA CLIENTE   
-      postClientes({ telefone, nome, whatsapp, instagram, dNascim}) 
-    }
-  }catch (err) {
-    console.log (err)
+  const loadCliente = async () => {
+    const resp = await getClienteById ({whats})
+    const {nome, telefone, whatsapp, instagram, dNascim} = resp.data[0]
+    setNome (nome)
+    setTelefone (telefone)
+    setWhatsapp (whatsapp)
+    setInstagram(instagram)
+    setDNascim(dNascim)
   }
-  navigate ('/registros/clientes')
 
-
-  // const loadCliente = async () => {
-  //   const resp = await getClienteById ({whats})
-  //   const {nome, telefone, whatsapp, instagram, dNascim} = resp.data[0]
-  //   setNome (nome)
-  //   setTelefone (telefone)
-  //   setWhatsapp (whatsapp)
-  //   setInstagram(instagram)
-  //   setDNascim(dNascim)
-  // }
-
-  // useEffect ( () => {
-  //   if (whats) {
-  //     console.log(whats)
-  //   }
-  // } , [whats] )
-
-
-
+  useEffect ( () => {
+    if (whats) {
+      loadCliente()
+      console.log(`useeffect bombando, por existir o parametro na URL: ${whats}`)
+    }
+  } , [] ) // importante colocar [], pois sem ele, o useeffect monitora alteracao de TODOS os states do código. e neste caso, cada vez q digitasse algo no input, ele acionaria a funcao loaddepartamento. 
 
 
   return (
     <>    
-      {/* <h3>{idDepartamento ? 'Edição' : 'Cadastro'} de Departamento</h3>   */}
-      <h3>Cadastro de Clientes</h3>  
+      <h3>{whats ? 'Edição' : 'Cadastro'} de Cliente</h3>  
       
       <div className="row mt-3">
         <div className="col-3">
