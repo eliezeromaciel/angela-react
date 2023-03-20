@@ -55,16 +55,16 @@ const Clientes = () => {
         <tbody className='table-group-divider align-middle'>
           { clientes !== '' && clientes.map ( (cl) => {
             return (
-              <tr key={cl.whats}>
+              <tr key={cl.whatsapp}>
                 <td>{cl.nome}</td>
                 <td>{cl.telefone}</td>
-                <td>{cl.whats}</td>
+                <td>{cl.whatsapp}</td>
                 <td>{cl.insta}</td>
                 <td>{cl.dn}</td>
                 <td>
                   <div className=' grid gap-3'>
                     <Link 
-                      to={`/registros/clientes/${cl.nome}`}
+                      to={`/registros/clientes/${cl.whatsapp}`}
                       className='btn btn-outline-warning btn-sm g-col-6  '
                     >
                       <i className="bi bi-pencil"></i>

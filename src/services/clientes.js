@@ -1,18 +1,31 @@
-// import api from './api'
+import api from './api'
 
 // const getClientes = async () => {
-//   const resp = await api.get('/departamentos')
+//   const resp = await api.get('/registros/clientes')
 //   return resp
 // }
 
 const getClientes = () => {
   const resp = [
-    { nome:'angela', telefone: 51984155331, whats: 51984155331, insta: '@angelaMaciel', dn: '22/15/1980' },
-    { nome:'Joana', telefone: 52968396943, whats: 52968396943, insta: '@joanasilva', dn: '24/10/1990' },
-    { nome:'Maristela', telefone: 5488880603, whats: 5488880603, insta: '@marilinda', dn: '11/09/1991' },
-    { nome:'Francine', telefone: 51997626285, whats: 51997626285, insta: '@frantodatoda', dn: '04/05/2000' },
+    { nome:'angela', telefone: 51984155331, whatsapp: 51984155331, insta: '@angelaMaciel', dn: '22/15/1980' },
+    { nome:'Joana', telefone: 52968396943, whatsapp: 52968396943, insta: '@joanasilva', dn: '24/10/1990' },
+    { nome:'Maristela', telefone: 5488880603, whatsapp: 5488880603, insta: '@marilinda', dn: '11/09/1991' },
+    { nome:'Francine', telefone: 51997626285, whatsapp: 51997626285, insta: '@frantodatoda', dn: '04/05/2000' },
 
   ]
+  return resp
+}
+
+// export const getClienteById = async ({whats}) => {
+//   // const resp = await api.get(`/registros/clientes/:${whatsapp}`)
+//   const resp = [whats]
+//   console.log(`resposta do GET pelo ID é ${resp}`)
+//   return resp
+// }
+
+export const getClienteById = async ({whats}) => {
+  const resp = await api.get(`/registros/clientes/${whats}`)
+  console.log(`resposta do GET pelo ID é ${resp}`)
   return resp
 }
 

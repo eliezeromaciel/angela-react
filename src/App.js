@@ -27,6 +27,7 @@ function App() {
             <Route path='/registros/mensagens' element={<Mensagens/> } />
             <Route path='/registros/clientes' element={<Clientes/> } />
             <Route path='/registros/clientes/new' element={<FormClientes/> } />
+            <Route path='/registros/clientes/:whats' element={<FormClientes/> } />
 
           </Route>
         </Route>

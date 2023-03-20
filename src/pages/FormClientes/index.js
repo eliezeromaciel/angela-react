@@ -1,9 +1,13 @@
-import React, { useState,} from 'react'
-import { useNavigate } from 'react-router-dom'
-import {postClientes} from '../../services/clientes'
+import React, { useEffect, useState} from 'react'
+import {useNavigate, useParams} from 'react-router-dom'   // IMPORTA USEPARAMS, QUE VAI POSSIBLITAR TRABALHAR COM O PARAMETRO QUE CHEGA PELA URL.
+import {getClienteById, postClientes} from '../../services/clientes'
 
 
 const FormClientes = () =>{
+
+  const {whats} = useParams()      // PARA CHAMAR O USEPARAMS
+  const navigate = useNavigate() 
+
 
   const [nome, setNome] = useState ('')
   const [telefone, setTelefone] = useState ('')
@@ -12,7 +16,6 @@ const FormClientes = () =>{
   const [dNascim, setDNascim] = useState ('')
   const [mensagem, setMensagem] = useState('')
 
-  const navigate = useNavigate() 
 
   const validaForm = () => {
     
@@ -36,8 +39,6 @@ const FormClientes = () =>{
       setMensagem ('Preencha o data nascimento')
       return false
     }
-    // NÃO PRECISO ESCREVER DESSA FORMA. {nome :nome, telefone:telefone, whatsapp: whatsapp, instagram: instagram, dNascim: dNascim}
-    postClientes({ telefone, nome, whatsapp, instagram, dNascim})
     
     setNome('')
     setTelefone('')
@@ -45,10 +46,42 @@ const FormClientes = () =>{
     setInstagram('')
     setDNascim('')
     setMensagem('')
-    
-    navigate ('/registros/clientes')
-
   }
+
+  
+  try {
+    if (whats) {
+      console.log(`o parametro whats é : ${whats}`)
+      getClienteById (whats)
+    } else {
+      // AQUI FUNCAO PARA CADASTRAR NOVA CLIENTE   
+      postClientes({ telefone, nome, whatsapp, instagram, dNascim}) 
+    }
+  }catch (err) {
+    console.log (err)
+  }
+  navigate ('/registros/clientes')
+
+
+  // const loadCliente = async () => {
+  //   const resp = await getClienteById ({whats})
+  //   const {nome, telefone, whatsapp, instagram, dNascim} = resp.data[0]
+  //   setNome (nome)
+  //   setTelefone (telefone)
+  //   setWhatsapp (whatsapp)
+  //   setInstagram(instagram)
+  //   setDNascim(dNascim)
+  // }
+
+  // useEffect ( () => {
+  //   if (whats) {
+  //     console.log(whats)
+  //   }
+  // } , [whats] )
+
+
+
+
 
   return (
     <>    
